@@ -12,6 +12,13 @@ const RootLayout = () => {
             headerShown: false,
           }}
         />
+        <Stack.Screen
+          name="exercise"
+          options={{
+            // headerShown: false,
+            presentation: "modal",
+          }}
+        />
       </Stack>
     </>
   );
