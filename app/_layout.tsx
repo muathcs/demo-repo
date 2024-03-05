@@ -1,8 +1,11 @@
 import { View, Text } from "react-native";
 import React from "react";
-import { Redirect, Stack, Tabs } from "expo-router";
+import { Redirect, Stack, Tabs, useLocalSearchParams } from "expo-router";
 
 const RootLayout = () => {
+  const params = useLocalSearchParams();
+  console.log(params);
+
   return (
     <>
       <Stack>
@@ -17,6 +20,11 @@ const RootLayout = () => {
           options={{
             // headerShown: false,
             presentation: "modal",
+
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            // headerTitle: "Ex",
           }}
         />
       </Stack>

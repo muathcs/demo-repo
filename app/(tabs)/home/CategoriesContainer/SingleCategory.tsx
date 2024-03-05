@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
-import { router } from "expo-router";
+import { router, useNavigation } from "expo-router";
 
 type SingleCategoryProps = {
   imgURL: ImageSourcePropType;
@@ -30,13 +30,27 @@ const SingleCategory = ({
   height,
   rounded,
 }: SingleCategoryProps) => {
+  //Argument of type '[string, { item: string; }]' is not assignable to parameter of type 'never'.ts(2345)
+
+  const navigation = useNavigation<any>();
+
+  const item = {
+    imgURL,
+    exerciseRegion,
+    exerciseName,
+    exerciseDuration,
+    color,
+    width,
+    height,
+    rounded,
+  };
   return (
     <View className="">
       <TouchableOpacity
         activeOpacity={0.5}
         onPress={() => {
           console.log("first");
-          router.navigate("/exercise");
+          router.navigate({ pathname: `/exercise`, params: item }); // Remove the braces in params
         }}
       >
         <View
