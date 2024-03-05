@@ -12,7 +12,7 @@ import SingleCategory from "./CategoriesContainer/SingleCategory";
 const firstCategories = [
   {
     imgURL: require("../../../assets/images/flexing.png"),
-    exerciseRegion: "lowe back",
+    exerciseRegion: "lowerBack",
     color: "D0EFF9",
     width: 60,
     height: 60,
@@ -20,7 +20,7 @@ const firstCategories = [
   },
   {
     imgURL: require("../../../assets/images/flexing.png"),
-    exerciseRegion: "lowex back",
+    exerciseRegion: "neck",
     color: "FEF1D9",
     width: 60,
     height: 60,
@@ -28,7 +28,7 @@ const firstCategories = [
   },
   {
     imgURL: require("../../../assets/images/flexing.png"),
-    exerciseRegion: "lowe back",
+    exerciseRegion: "shoulder",
     color: "E7BDEB",
     width: 60,
     height: 60,
@@ -36,7 +36,7 @@ const firstCategories = [
   },
   {
     imgURL: require("../../../assets/images/flexing.png"),
-    exerciseRegion: "lowe back",
+    exerciseRegion: "hamstrings",
     color: "FEF1D9",
     width: 60,
     height: 60,
@@ -44,7 +44,7 @@ const firstCategories = [
   },
   {
     imgURL: require("../../../assets/images/flexing.png"),
-    exerciseRegion: "lowe back",
+    exerciseRegion: "chest",
     color: "D0EFF9",
     width: 60,
     height: 60,
@@ -52,7 +52,7 @@ const firstCategories = [
   },
   {
     imgURL: require("../../../assets/images/flexing.png"),
-    exerciseRegion: "lowe back",
+    exerciseRegion: "hips",
     color: "F9D0D0",
     width: 60,
     height: 60,
@@ -63,7 +63,7 @@ const firstCategories = [
 const secondCategories = [
   {
     imgURL: require("../../../assets/images/flexing.png"),
-    exerciseRegion: "lowe back",
+    exerciseRegion: "core",
     color: "FEF1D9",
     width: 60,
     height: 60,
@@ -71,7 +71,7 @@ const secondCategories = [
   },
   {
     imgURL: require("../../../assets/images/flexing.png"),
-    exerciseRegion: "lowe back",
+    exerciseRegion: "upperBody",
     color: "E7BDEB",
     width: 60,
     height: 60,
@@ -79,7 +79,7 @@ const secondCategories = [
   },
   {
     imgURL: require("../../../assets/images/flexing.png"),
-    exerciseRegion: "lowe back",
+    exerciseRegion: "lowerBody",
     color: "FEF1D9",
     width: 60,
     height: 60,
@@ -87,16 +87,8 @@ const secondCategories = [
   },
   {
     imgURL: require("../../../assets/images/flexing.png"),
-    exerciseRegion: "lowe back",
+    exerciseRegion: "quads",
     color: "D0EFF9",
-    width: 60,
-    height: 60,
-    rounded: true,
-  },
-  {
-    imgURL: require("../../../assets/images/flexing.png"),
-    exerciseRegion: "lowe back",
-    color: "F9D0D0",
     width: 60,
     height: 60,
     rounded: true,

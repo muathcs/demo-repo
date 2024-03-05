@@ -16,7 +16,7 @@ const Recommended = () => {
       >
         <SingleCategory
           imgURL={require("../../../assets/images/flexing.png")}
-          exerciseRegion={"lowerBack"}
+          exerciseRegion={"posture"}
           exerciseName={"Stretch"}
           exerciseDuration={20}
           color="D0EFF9"
@@ -34,7 +34,7 @@ const Recommended = () => {
         />
         <SingleCategory
           imgURL={require("../../../assets/images/flexing.png")}
-          exerciseRegion={"lowerBack"}
+          exerciseRegion={"neck"}
           exerciseName={"Stretch"}
           exerciseDuration={20}
           color="FEF1D9"
@@ -43,7 +43,7 @@ const Recommended = () => {
         />
         <SingleCategory
           imgURL={require("../../../assets/images/flexing.png")}
-          exerciseRegion={"lowerBack"}
+          exerciseRegion={"core"}
           exerciseName={"Stretch"}
           exerciseDuration={20}
           color="F9D0D0"

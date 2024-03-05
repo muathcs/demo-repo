@@ -1,99 +1,90 @@
-import { View, Text, FlatList, Button, Pressable, Image } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  Button,
+  Pressable,
+  Image,
+  ImageSourcePropType,
+  TouchableOpacity,
+} from "react-native";
 import React, { useState } from "react";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { excerciseCollectionByRegion as Data } from "../../assets/data/excerciseCollectionByRegion";
+import SingleExercise from "./SingleExercise";
+import { isCallSignatureDeclaration } from "typescript";
+//partial maps over all the property of the Type and adds an optional type to all of them
+// This is ok, because I'm recieivng this object not settings it.
+type SingleCategoryProps = Partial<{
+  imgURL: ImageSourcePropType;
+  exerciseRegion: "lowerBack";
+  exerciseName: String;
+  exerciseDuration: Number;
+  color: string;
+  width: number;
+  height: number;
+  rounded: boolean;
+}>;
 
-const Data = {
-  ex1: [
-    {
-      imgURL: require("../../assets/images/flexing.png"),
+function StartExerciseButton({ exerciseList }) {
+  console.log("eList: ", exerciseList);
 
-      name: "bendy",
-      duration: 20,
-    },
-    {
-      imgURL: require("../../assets/images/flexing.png"),
+  const myList = [
+    { duration: 20, name: "core1" },
+    { duration: 20, name: "core2" },
+    { duration: 20, name: "core3" },
+  ];
 
-      name: "flexy",
-      duration: 20,
-    },
-    {
-      imgURL: require("../../assets/images/flexing.png"),
-
-      name: "splexy",
-      duration: 20,
-    },
-    {
-      imgURL: require("../../assets/images/flexing.png"),
-
-      name: "splexy",
-      duration: 20,
-    },
-    {
-      imgURL: require("../../assets/images/flexing.png"),
-
-      name: "splexy",
-      duration: 20,
-    },
-    {
-      imgURL: require("../../assets/images/flexing.png"),
-
-      name: "splexy",
-      duration: 20,
-    },
-    {
-      imgURL: require("../../assets/images/flexing.png"),
-
-      name: "splexy",
-      duration: 20,
-    },
-    {
-      imgURL: require("../../assets/images/flexing.png"),
-
-      name: "splexy",
-      duration: 20,
-    },
-    {
-      imgURL: require("../../assets/images/flexing.png"),
-
-      name: "splexy",
-      duration: 20,
-    },
-  ],
-  ex2: [
-    {
-      imgURL: require("../../assets/images/flexing.png"),
-
-      name: "bendy2",
-      duration: 20,
-    },
-    {
-      imgURL: require("../../assets/images/flexing.png"),
-
-      name: "flexy2",
-      duration: 20,
-    },
-    {
-      imgURL: require("../../assets/images/flexing.png"),
-
-      name: "splexy2",
-      duration: 20,
-    },
-  ],
-};
+  return (
+    <TouchableOpacity
+      onPress={() => {
+        router.navigate({
+          pathname: "/exercise/Active",
+          params: { exerciseList: JSON.stringify(exerciseList) },
+        });
+      }}
+      activeOpacity={0.8}
+      className="items-center rounded-xl py-2 mx-5 mt-5 bg-[#DCF1FE] border border-gray-50  "
+    >
+      <Text className="text-[#12BEF6] font-bold text-md">Start</Text>
+    </TouchableOpacity>
+  );
+}
 
 const ExercisePage = () => {
+  const item = useLocalSearchParams();
+  const {
+    color,
+    imgURL,
+    exerciseRegion,
+    height,
+    width,
+    exerciseDuration,
+    exerciseName,
+    rounded,
+  }: SingleCategoryProps = item;
+
+  // console.log("item: ", item);
+
+  // if the excercise does not exist leave function.
+  if (!Data[exerciseRegion]) {
+    return;
+  }
+
   const [totaltime, setTime] = useState(
-    Data.ex1.reduce((totalDuration, exercise) => {
+    Data[exerciseRegion].reduce((totalDuration, exercise) => {
       return totalDuration + exercise.duration;
     }, 0)
   );
 
+  //increases Time for an individual exercise
+
   function increaseTime(name: string) {
-    let tempArr = [...Data.ex1];
+    let tempArr = [...Data[exerciseRegion]];
     tempArr.map((item) => {
       if (name == item.name) {
         item.duration += 5;
@@ -106,10 +97,12 @@ const ExercisePage = () => {
     setTime(newTime);
     //
   }
+
+  //decreases Time for an individual exercise
   function decreaseTime(name: string) {
     //
 
-    let tempArr = [...Data.ex1];
+    let tempArr = [...Data[exerciseRegion]];
     tempArr.map((item) => {
       if (name == item.name) {
         if (item.duration == 0) return;
@@ -124,13 +117,8 @@ const ExercisePage = () => {
     setTime(newTime);
   }
 
-  console.log("check re-render");
-
-  const item = useLocalSearchParams();
-  const { color } = item;
-
   return (
-    <View className=" bg-white h-full pl-2">
+    <View className=" bg-white h-full pl-2 pt-2">
       <View className=" mb-2">
         <Text className="text-[20px]">Category name</Text>
         <Text className="text-gray-500">
@@ -148,52 +136,36 @@ const ExercisePage = () => {
           <Text className="right-3">
             <FontAwesome6 name="person-praying" size={14} color="#F77D39" />
           </Text>
-          <Text className="text-[#F77D39]  ">Lower Back</Text>
+          <Text className="text-[#F77D39]  ">
+            {exerciseRegion == "lowerBack" ? "Lower back" : exerciseRegion}
+          </Text>
         </View>
       </View>
-      <View className="pb-20">
+      <View className="border-2 flex-1 border-yellow-50 ">
         <Text className="font-bold text-[16px] mt-2">Stretches</Text>
-        <View className=" pb-20">
-          <FlatList
-            data={Data.ex1}
-            className=" h-[600px] pb-20"
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            renderItem={({ item }) => (
-              <>
-                <View className=" bg-white  flex flex-row h-20 justify-between items-center  border-gray-100 rounded-lg ">
-                  <View className="h-16 w-20 border border-gray-100 rounded-lg">
-                    <Image source={item.imgURL} className="w-full h-full" />
-                  </View>
-                  <View className="flex-col gap-1 pl-2 right-12">
-                    <Text>{item.name}</Text>
-
-                    <Text className="text-gray-400">
-                      {item.duration} minutes
-                    </Text>
-                  </View>
-                  <View className=" flex-row mr-2 gap-x-5 h-10">
-                    <EvilIcons
-                      onPress={() => {
-                        decreaseTime(item.name);
-                      }}
-                      name="minus"
-                      size={36}
-                      color="gray"
-                    />
-                    <EvilIcons
-                      onPress={() => {
-                        increaseTime(item.name);
-                      }}
-                      name="plus"
-                      size={36}
-                      color="gray"
-                    />
-                  </View>
-                </View>
-              </>
-            )}
-          ></FlatList>
+        <View className="flex-1 ">
+          <SafeAreaView className="flex-1 ">
+            <FlatList
+              data={Data[exerciseRegion]}
+              className="  "
+              style={{ paddingBottom: 10 }}
+              showsHorizontalScrollIndicator={false}
+              showsVerticalScrollIndicator={false}
+              ListFooterComponent={() => (
+                <StartExerciseButton exerciseList={Data[exerciseRegion]} />
+              )}
+              contentContainerStyle={{ paddingBottom: 10 }}
+              renderItem={({ item }) => (
+                <>
+                  <SingleExercise
+                    item={item}
+                    increaseTime={increaseTime}
+                    decreaseTime={decreaseTime}
+                  />
+                </>
+              )}
+            ></FlatList>
+          </SafeAreaView>
         </View>
       </View>
     </View>

@@ -10,7 +10,12 @@ const ExerciseLayout = () => {
         options={{
           headerShown: false,
           presentation: "modal",
-          animationDuration: 220,
+        }}
+      />
+      <Stack.Screen
+        name="Active"
+        options={{
+          headerShown: false,
         }}
       />
     </Stack>
