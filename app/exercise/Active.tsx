@@ -1,24 +1,60 @@
 import { View, Text, Image, Pressable } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Feather } from "@expo/vector-icons";
 import { useLocalSearchParams } from "expo-router";
 import { parse } from "expo-linking";
+import { useCountDown } from "../../customHooks/useCountDown";
 
 type JsonObjectType = {
   name: String;
 };
+
+type activitState = "playing" | "pause" | "restart";
 const Active = () => {
-  const [active, setActive] = useState(false);
+  const [playingState, setPlayingState] = useState<activitState>("pause");
   const params = useLocalSearchParams();
   const exerciseList: any = params.exerciseList;
   const parsedExerciseList = JSON.parse(exerciseList);
 
   const [indexOfList, setIndexOfList] = useState(0);
+  const initialTime = 5;
+  console.log("XXX: ", initialTime);
+  const [time, setTime, startTimer, stopTimer] = useCountDown(initialTime);
+
+  console.log("initial Time: ", initialTime);
+  //   console.log("time: ", setTime);
+
+  //   if (time === 0) {
+  //     // setTime(3);
+  //     setTime("pause");
+  //     console.log("its zizo: ", time);
+  //   }
+
+  useEffect(() => {
+    if (time == 0 && indexOfList < parsedExerciseList.length - 1) {
+      const timeOut = setTimeout(() => {
+        setIndexOfList((index) => index + 1);
+        setTime(initialTime);
+        setPlayingState("playing");
+      }, 1000);
+
+      return () => clearTimeout(timeOut);
+    }
+  }, [time]);
+  function startCountDown() {
+    startTimer();
+  }
+
+  function stopCountDown() {
+    stopTimer();
+  }
 
   function next() {
     if (indexOfList == parsedExerciseList.length - 1) {
       return;
     }
+
+    setTime(initialTime);
 
     setIndexOfList((prev) => prev + 1);
     //
@@ -32,7 +68,6 @@ const Active = () => {
     setIndexOfList((prev) => prev - 1);
   }
 
-  console.log("parsed: ", parsedExerciseList);
   return (
     <View className="h-full bg-white">
       <View className="w-full h-1/2">
@@ -53,7 +88,7 @@ const Active = () => {
             {indexOfList + 1}/{parsedExerciseList.length}
           </Text>
         </View>
-        <Text>{parsedExerciseList[indexOfList].duration}:00</Text>
+        <Text>{time}:00</Text>
       </View>
       <View className="mt-5 flex-row justify-between mx-2">
         <Pressable
@@ -64,25 +99,37 @@ const Active = () => {
         </Pressable>
         <Pressable className="self-start px-4 py-3 ">
           <Text className=" text-white">
-            {!active ? (
+            {time == 0 ? (
               <Feather
                 onPress={() => {
-                  setActive(true);
+                  stopCountDown();
+                  setPlayingState("restart");
+                }}
+                name="repeat"
+                size={26}
+                color="red"
+              />
+            ) : playingState == "pause" ? (
+              <Feather
+                onPress={() => {
+                  stopCountDown();
+                  setPlayingState("playing");
                 }}
                 name="play"
                 size={26}
-                color="black"
+                color="green"
               />
-            ) : (
+            ) : playingState == "playing" ? (
               <Feather
                 onPress={() => {
-                  setActive(false);
+                  startCountDown();
+                  setPlayingState("pause");
                 }}
                 name="pause"
                 size={26}
-                color="black"
-              ></Feather>
-            )}
+                color="red"
+              />
+            ) : null}
           </Text>
         </Pressable>
         <Pressable

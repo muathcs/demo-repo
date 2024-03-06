@@ -31,8 +31,6 @@ type SingleCategoryProps = Partial<{
 }>;
 
 function StartExerciseButton({ exerciseList }) {
-  console.log("eList: ", exerciseList);
-
   const myList = [
     { duration: 20, name: "core1" },
     { duration: 20, name: "core2" },
