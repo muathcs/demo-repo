@@ -45,7 +45,7 @@ const SingleCategory = ({
     rounded,
   };
   return (
-    <View className="">
+    <View className=" ">
       <TouchableOpacity
         activeOpacity={0.5}
         onPress={() => {
@@ -62,12 +62,12 @@ const SingleCategory = ({
           }}
           className=" w-[135px] h-[125px] flex justify-center items-center  mx-1 my-2  bg-red-400  "
         >
-          <View className=" w-full items-center ">
-            <Image className="flex-shrink-0 w-full  h-full " source={imgURL} />
+          <View className=" w-full items-center  ">
+            <Image className="flex-shrink-0 w-full h-full " source={imgURL} />
           </View>
         </View>
       </TouchableOpacity>
-      <View className="  items-center ">
+      <View className="  ml-2 items-center">
         <Text className="text-gray-800">{exerciseRegion}</Text>
         <Text className="text-gray-400">
           {exerciseDuration && exerciseName + " |"}

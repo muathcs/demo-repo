@@ -97,8 +97,8 @@ const secondCategories = [
 
 const Categories = () => {
   return (
-    <View className=" flex  h-2/3 left-2    ">
-      <Text className="left-2 text-[16px] text-gray-800 mb-2 ml-1">
+    <View className=" flex  mx-2 mt-4 ">
+      <Text className="left-2 text-[16px]  text-gray-800 mb-2 ml-1">
         Browse By Area
       </Text>
       {/* <ScrollView

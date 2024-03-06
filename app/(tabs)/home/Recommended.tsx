@@ -4,7 +4,7 @@ import SingleCategory from "./CategoriesContainer/SingleCategory";
 
 const Recommended = () => {
   return (
-    <View className=" flex  h-1/3 left-2 ">
+    <View className=" flex mx-2 my-8  ">
       <Text className="left-2 text-[16px] text-gray-800">
         Recommended For You
       </Text>
@@ -15,8 +15,8 @@ const Recommended = () => {
         className="p-0"
       >
         <SingleCategory
-          imgURL={require("../../../assets/images/flexing.png")}
-          exerciseRegion={"posture"}
+          imgURL={require("../../../assets/images/single.png")}
+          exerciseRegion={"lowerBack"}
           exerciseName={"Stretch"}
           exerciseDuration={20}
           color="D0EFF9"
@@ -34,7 +34,7 @@ const Recommended = () => {
         />
         <SingleCategory
           imgURL={require("../../../assets/images/flexing.png")}
-          exerciseRegion={"neck"}
+          exerciseRegion={"lowerBack"}
           exerciseName={"Stretch"}
           exerciseDuration={20}
           color="FEF1D9"
@@ -43,7 +43,7 @@ const Recommended = () => {
         />
         <SingleCategory
           imgURL={require("../../../assets/images/flexing.png")}
-          exerciseRegion={"core"}
+          exerciseRegion={"lowerBack"}
           exerciseName={"Stretch"}
           exerciseDuration={20}
           color="F9D0D0"

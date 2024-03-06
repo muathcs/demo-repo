@@ -11,10 +11,10 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 const home = () => {
   return (
-    <View className="bg-white h-full ">
-      <ScrollView>
-        <SafeAreaView>
-          <View className="flex-1 pb-24 w-full z-20     ">
+    <View className="bg-[#F8F3FF] h-full  ">
+      <ScrollView className="">
+        <SafeAreaView className="mx-0">
+          <View className="flex-1  w-full z-20 ">
             <ProfileHeader />
             <Routine />
             <Recommended />

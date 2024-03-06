@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
-import { router, useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams, useRouter } from "expo-router";
 import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
@@ -31,6 +31,7 @@ type SingleCategoryProps = Partial<{
 }>;
 
 function StartExerciseButton({ exerciseList }) {
+  const router = useRouter();
   const myList = [
     { duration: 20, name: "core1" },
     { duration: 20, name: "core2" },
@@ -41,14 +42,14 @@ function StartExerciseButton({ exerciseList }) {
     <TouchableOpacity
       onPress={() => {
         router.navigate({
-          pathname: "/exercise/Active",
+          pathname: "exercise/Active",
           params: { exerciseList: JSON.stringify(exerciseList) },
         });
       }}
       activeOpacity={0.8}
-      className="items-center rounded-xl py-2 mx-5 mt-5 bg-[#DCF1FE] border border-gray-50  "
+      className="items-center rounded-xl py-6 mx-5 mt-5 bg-[#DCF1FE] border border-gray-50  "
     >
-      <Text className="text-[#12BEF6] font-bold text-md">Start</Text>
+      <Text className="text-[#12BEF6] font-bold text-md ">Start</Text>
     </TouchableOpacity>
   );
 }

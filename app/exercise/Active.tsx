@@ -1,27 +1,34 @@
-import { View, Text, Image, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  TouchableHighlight,
+  TouchableOpacity,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { Feather } from "@expo/vector-icons";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import { parse } from "expo-linking";
 import { useCountDown } from "../../customHooks/useCountDown";
-
 type JsonObjectType = {
   name: String;
 };
 
 type activitState = "playing" | "pause" | "restart";
 const Active = () => {
-  const [playingState, setPlayingState] = useState<activitState>("pause");
+  const [active, setActive] = useState<boolean>(false);
   const params = useLocalSearchParams();
   const exerciseList: any = params.exerciseList;
   const parsedExerciseList = JSON.parse(exerciseList);
 
   const [indexOfList, setIndexOfList] = useState(0);
-  const initialTime = 5;
-  console.log("XXX: ", initialTime);
+  const initialTime = parsedExerciseList[indexOfList].duration;
   const [time, setTime, startTimer, stopTimer] = useCountDown(initialTime);
 
-  console.log("initial Time: ", initialTime);
+  const navigation = useNavigation();
+  const router = useRouter();
+
   //   console.log("time: ", setTime);
 
   //   if (time === 0) {
@@ -33,14 +40,21 @@ const Active = () => {
   useEffect(() => {
     if (time == 0 && indexOfList < parsedExerciseList.length - 1) {
       const timeOut = setTimeout(() => {
-        setIndexOfList((index) => index + 1);
-        setTime(initialTime);
-        setPlayingState("playing");
+        next();
+        // setIndexOfList((index) => index + 1);
+        // console.log("init time from inside: ", initialTime);
+        // setTime(parsedExerciseList[indexOfList + 1].duration);
+        // setActive(true);
       }, 1000);
 
       return () => clearTimeout(timeOut);
     }
   }, [time]);
+
+  useEffect(() => {
+    let id = navigation.getId();
+    console.log("id: ", id);
+  }, [navigation]);
   function startCountDown() {
     startTimer();
   }
@@ -54,9 +68,13 @@ const Active = () => {
       return;
     }
 
-    setTime(initialTime);
+    setTimeout(() => {}, 3000);
+    setTime(parsedExerciseList[indexOfList + 1].duration);
 
     setIndexOfList((prev) => prev + 1);
+
+    console.log("after 3 seconds");
+
     //
   }
 
@@ -64,77 +82,76 @@ const Active = () => {
     if (indexOfList == 0) {
       return;
     }
+    setTime(parsedExerciseList[indexOfList - 1].duration);
 
     setIndexOfList((prev) => prev - 1);
   }
 
   return (
     <View className="h-full bg-white">
-      <View className="w-full h-1/2">
+      <View className="w-full h-[40%]">
         <Image
-          className="w-full h-full"
+          className="w-[80%] mx-auto  h-[90%]  "
+          source={require("../../assets/images/orange-slash.jpg")}
+        ></Image>
+        <Image
+          className="w-full h-full absolute "
           source={parsedExerciseList[indexOfList].imgURL}
         />
       </View>
-      <View className="items-center">
-        <Text className="text-[20px] font-light ">
-          {parsedExerciseList[indexOfList].name}
+      <View className="items-center  ">
+        <Text className="text-[28px] font-semibold ">
+          {parsedExerciseList[indexOfList].name.toUpperCase()}
         </Text>
       </View>
 
-      <View className="border items-center h-32 justify-center">
-        <View className="border rounded-full h-24 w-24 items-center justify-center">
-          <Text>
-            {indexOfList + 1}/{parsedExerciseList.length}
-          </Text>
+      <View className="items-center h-56 justify-center ">
+        <View className="border-[10px] border-blue-200 h-36 w-36 rounded-full items-center justify-center p-0 m-0 ">
+          <View className="rounded-full h-36 w-36 items-center  justify-center border-2 border-blue-500">
+            <Text className="text-blue-600 text-[32px] font-light opacity-100">
+              {indexOfList + 1}/
+              <Text className="text-blue-400">{parsedExerciseList.length}</Text>
+            </Text>
+          </View>
         </View>
-        <Text>{time}:00</Text>
+
+        <Text className="text-[30px] font-bold">{time}:00</Text>
       </View>
       <View className="mt-5 flex-row justify-between mx-2">
         <Pressable
           onPress={back}
-          className="border self-start px-10 py-3 rounded-md bg-white border-[#12BEF6]"
+          className="border self-start px-16 py-7 rounded-md bg-white border-[#12BEF6]"
         >
           <Text className=" text-[#12BEF6]">Prev</Text>
         </Pressable>
-        <Pressable className="self-start px-4 py-3 ">
+        <View className="mx-2  items-center justify-center ">
           <Text className=" text-white">
-            {time == 0 ? (
-              <Feather
-                onPress={() => {
-                  stopCountDown();
-                  setPlayingState("restart");
-                }}
-                name="repeat"
-                size={26}
-                color="red"
-              />
-            ) : playingState == "pause" ? (
-              <Feather
-                onPress={() => {
-                  stopCountDown();
-                  setPlayingState("playing");
-                }}
-                name="play"
-                size={26}
-                color="green"
-              />
-            ) : playingState == "playing" ? (
-              <Feather
+            {active ? (
+              <TouchableOpacity
+                activeOpacity={1}
                 onPress={() => {
                   startCountDown();
-                  setPlayingState("pause");
+                  setActive(false);
                 }}
-                name="pause"
-                size={26}
-                color="red"
-              />
-            ) : null}
+              >
+                <Feather name="pause" size={36} color="red" />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                onPress={() => {
+                  stopCountDown();
+                  setActive(true);
+                }}
+                activeOpacity={1}
+              >
+                <Feather name="play" size={36} color="black" />
+              </TouchableOpacity>
+            )}
           </Text>
-        </Pressable>
+        </View>
         <Pressable
           onPress={next}
-          className="border self-start px-10 py-3 rounded-md bg-[#12BEF6] border-white"
+          className="border self-start px-16 py-7  rounded-md bg-[#12BEF6] border-white"
         >
           <Text className=" text-white">Next</Text>
         </Pressable>

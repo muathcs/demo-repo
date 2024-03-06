@@ -41,7 +41,7 @@ const AllExercises = {
 
   lowerBack: {
     lowerBack1: {
-      imgURL: require("../../assets/images/flexing.png"),
+      imgURL: require("../../assets/images/single.png"),
       name: "lowerBack1",
       duration: 20,
     },
@@ -136,7 +136,7 @@ const AllExercises = {
   posture: {
     techNeck: {
       imgURL: require("../../assets/images/flexing.png"),
-      name: "techNeck",
+      name: "tech Neck",
       duration: 20,
     },
     pelvicTilt: {
