@@ -1,6 +1,7 @@
 import { View, Text, Pressable } from "react-native";
 import React from "react";
 import { Stack, router, useNavigation } from "expo-router";
+import FeatherIcon from "react-native-vector-icons/Feather";
 
 const ExerciseLayout = () => {
   const navigation = useNavigation();
@@ -29,7 +30,7 @@ const ExerciseLayout = () => {
                 onPress={() => router.back()}
                 className="text-blue-500 text-lg font-bold"
               >
-                <Text className="text-blue-500 text-lg font-bold">back</Text>
+                <FeatherIcon color="#000" name="arrow-left" size={24} />
               </Pressable>
             );
           },

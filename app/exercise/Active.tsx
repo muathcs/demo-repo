@@ -5,12 +5,14 @@ import {
   Pressable,
   TouchableHighlight,
   TouchableOpacity,
+  TextInput,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Feather } from "@expo/vector-icons";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import { parse } from "expo-linking";
 import { useCountDown } from "../../customHooks/useCountDown";
+import Modal from "../(tabs)/profile/Modal";
 type JsonObjectType = {
   name: String;
 };
@@ -20,7 +22,12 @@ const Active = () => {
   const [active, setActive] = useState<boolean>(false);
   const params = useLocalSearchParams();
   const exerciseList: any = params.exerciseList;
-  const parsedExerciseList = JSON.parse(exerciseList);
+  let parsedExerciseList = JSON.parse(exerciseList);
+  const [isOpen, setIsOpen] = useState(false);
+  console.log("list: ", parsedExerciseList);
+
+  // filter out any item that has a list of more than
+  parsedExerciseList = parsedExerciseList.filter((item) => item.duration > 0);
 
   const [indexOfList, setIndexOfList] = useState(0);
   const initialTime = parsedExerciseList[indexOfList].duration;
@@ -38,17 +45,25 @@ const Active = () => {
   //   }
 
   useEffect(() => {
-    if (time == 0 && indexOfList < parsedExerciseList.length - 1) {
-      const timeOut = setTimeout(() => {
-        next();
-        // setIndexOfList((index) => index + 1);
-        // console.log("init time from inside: ", initialTime);
-        // setTime(parsedExerciseList[indexOfList + 1].duration);
-        // setActive(true);
-      }, 1000);
+    const autoMoveToNext = () => {
+      if (time == 0 && indexOfList < parsedExerciseList.length - 1) {
+        const timeOut = setTimeout(() => {
+          next();
 
-      return () => clearTimeout(timeOut);
-    }
+          setTimeout(() => {
+            setIsOpen(true);
+          }, 3000);
+
+          // setIndexOfList((index) => index + 1);
+          // console.log("init time from inside: ", initialTime);
+          // setTime(parsedExerciseList[indexOfList + 1].duration);
+          // setActive(true);
+        }, 1000);
+
+        return () => clearTimeout(timeOut);
+      }
+    };
+    autoMoveToNext();
   }, [time]);
 
   useEffect(() => {
@@ -89,6 +104,45 @@ const Active = () => {
 
   return (
     <View className="h-full bg-white">
+      {isOpen && (
+        <Modal isOpen={true}>
+          <Text>G</Text>
+          <View className="bg-white w-full p-4 rounded-xl">
+            <TouchableOpacity
+              onPress={() => {
+                console.log("here");
+                setIsOpen(false);
+              }}
+              className="absolute right-5 top-2  z-10 "
+            >
+              {/* <Text>X</Text> */}
+            </TouchableOpacity>
+            <View className="mb-4 gap-1">
+              <Text>Send bugs</Text>
+              <Text className="text-gray-500">
+                Share your feedback, type in the bug you encountered, and we
+                will fix it
+              </Text>
+            </View>
+            <View>
+              <TextInput
+                multiline={true}
+                underlineColorAndroid={"transparent"}
+                autoCorrect={true}
+                autoFocus={true}
+                autoCapitalize={"sentences"}
+                className="bg-gray-100 rounded-lg h-40 py-4 px-3 border border-gray-300 "
+                placeholder="I found a bug where..."
+                placeholderTextColor="gray"
+                style={{ textAlignVertical: "top" }}
+              />
+            </View>
+            {/* <Pressable className="bg-red-400 rounded-md py-3 items-center justify-center mt-3">
+              <Text className="text-white text-md">Send Bug</Text>
+            </Pressable> */}
+          </View>{" "}
+        </Modal>
+      )}
       <View className="w-full h-[40%]">
         <Image
           className="w-[80%] mx-auto  h-[90%]  "
