@@ -75,22 +75,6 @@ const TabsLayout = () => {
           },
         }}
       />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color, size, focused }) => {
-            const iconsName: iconNameType = focused
-              ? "person"
-              : "person-outline";
-            return (
-              <>
-                <Ionicons name={iconsName} size={size} color={"#7F63FB"} />
-              </>
-            );
-          },
-        }}
-      />
 
       <Tabs.Screen
         name="stats"
@@ -100,6 +84,22 @@ const TabsLayout = () => {
             const iconsName: iconNameType = focused
               ? "stats-chart"
               : "stats-chart-outline";
+            return (
+              <>
+                <Ionicons name={iconsName} size={size} color={"#7F63FB"} />
+              </>
+            );
+          },
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size, focused }) => {
+            const iconsName: iconNameType = focused
+              ? "person"
+              : "person-outline";
             return (
               <>
                 <Ionicons name={iconsName} size={size} color={"#7F63FB"} />
