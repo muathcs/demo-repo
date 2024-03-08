@@ -13,6 +13,7 @@ import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import { parse } from "expo-linking";
 import { useCountDown } from "../../customHooks/useCountDown";
 import Modal from "../(tabs)/profile/Modal";
+import { Card } from "@ui-kitten/components";
 type JsonObjectType = {
   name: String;
 };

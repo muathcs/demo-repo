@@ -1,4 +1,4 @@
-const AllExercises = {
+export const AllExercises = {
   hips: {
     hips1: {
       imgURL: require("../../assets/images/flexing.png"),
