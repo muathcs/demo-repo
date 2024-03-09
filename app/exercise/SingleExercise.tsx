@@ -1,16 +1,61 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { EvilIcons } from "@expo/vector-icons";
 
 type SingleExerciseType = {
   item: any;
-  increaseTime: (name: string) => void;
-  decreaseTime: (name: string) => void;
+  increaseTime?: (name: string) => void;
+  decreaseTime?: (name: string) => void;
+  custom?: boolean;
+  customList?: String[];
+  setCustomList?: (state: any) => void;
 };
+
+function ExcerciseControls({ decreaseTime, increaseTime, name }) {
+  return (
+    <View className=" flex-row mr-2 gap-x-5 h-10">
+      <EvilIcons
+        onPress={() => {
+          decreaseTime(name);
+        }}
+        name="minus"
+        size={36}
+        color="gray"
+      />
+      <EvilIcons
+        onPress={() => {
+          increaseTime(name);
+        }}
+        name="plus"
+        size={36}
+        color="gray"
+      />
+    </View>
+  );
+}
+
+function CustomExcerciseControls({ setCustomList, customList, item }) {
+  function addExerciseToCustomList() {
+    const tempArr = customList;
+
+    console.log("item: ", item);
+    setCustomList((prevItems) => [...prevItems, item]);
+  }
+  return (
+    <View className=" flex-row mr-2 gap-x-5 h-10">
+      <TouchableOpacity onPress={addExerciseToCustomList} activeOpacity={0.8}>
+        <EvilIcons name="plus" size={36} color="green" />
+      </TouchableOpacity>
+    </View>
+  );
+}
 const SingleExercise = ({
   item,
   increaseTime,
   decreaseTime,
+  custom,
+  customList,
+  setCustomList,
 }: SingleExerciseType) => {
   const { imgURL, name, duration } = item;
   return (
@@ -23,24 +68,19 @@ const SingleExercise = ({
 
         <Text className="text-gray-400">{item.duration} minutes</Text>
       </View>
-      <View className=" flex-row mr-2 gap-x-5 h-10">
-        <EvilIcons
-          onPress={() => {
-            decreaseTime(item.name);
-          }}
-          name="minus"
-          size={36}
-          color="gray"
+      {!custom ? (
+        <ExcerciseControls
+          decreaseTime={decreaseTime}
+          increaseTime={increaseTime}
+          name={item.name}
         />
-        <EvilIcons
-          onPress={() => {
-            increaseTime(item.name);
-          }}
-          name="plus"
-          size={36}
-          color="gray"
+      ) : (
+        <CustomExcerciseControls
+          setCustomList={setCustomList}
+          customList={customList}
+          item={item}
         />
-      </View>
+      )}
     </View>
   );
 };

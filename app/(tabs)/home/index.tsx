@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, FlatList } from "react-native";
 import React from "react";
-import { Link } from "expo-router";
+import { Link, Redirect } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import ProfileHeader from "./ProfileHeader";
 import Routine from "./Routine";
@@ -13,28 +13,27 @@ import * as eva from "@eva-design/eva";
 
 const home = () => {
   return (
-    <ApplicationProvider {...eva} theme={eva.light}>
-      <View className="bg-[#F8F3FF] h-full  ">
-        <ScrollView className="">
-          <SafeAreaView className="mx-0">
-            <View className="flex-1  w-full z-20 ">
-              <ProfileHeader />
-              <Routine />
-              <Recommended />
-              <Categories />
-            </View>
-          </SafeAreaView>
-        </ScrollView>
+    <View className="bg-[#F8F3FF] h-full  ">
+      <Redirect href="/bookmark/custom" />
+      <ScrollView className="">
+        <SafeAreaView className="mx-0">
+          <View className="flex-1  w-full z-20 ">
+            <ProfileHeader />
+            <Routine />
+            <Recommended />
+            <Categories />
+          </View>
+        </SafeAreaView>
+      </ScrollView>
 
-        {/* <Text className="bg-red-500 text-blue-300 border-2 ">home</Text>
+      {/* <Text className="bg-red-500 text-blue-300 border-2 ">home</Text>
       <View className="bg-red-400 flex justify-center">
       <Text>Hello</Text>
       </View>
       <StatusBar style="auto" />
       
     <Link href="/settings">Go to settings</Link> */}
-      </View>
-    </ApplicationProvider>
+    </View>
   );
 };
 

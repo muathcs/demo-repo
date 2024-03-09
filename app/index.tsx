@@ -5,13 +5,7 @@ import * as eva from "@eva-design/eva";
 import { ApplicationProvider } from "@ui-kitten/components";
 
 const index = () => {
-  return (
-    <>
-      <ApplicationProvider {...eva} theme={eva.light}>
-        <Redirect href="/bookmark" />
-      </ApplicationProvider>
-    </>
-  );
+  return <>{/* <Redirect href="/bookmark/custom" /> */}</>;
 };
 
 export default index;

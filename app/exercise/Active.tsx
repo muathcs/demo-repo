@@ -154,7 +154,7 @@ const Active = () => {
           source={parsedExerciseList[indexOfList].imgURL}
         />
       </View>
-      <View className="items-center  ">
+      <View className="items-center ">
         <Text className="text-[28px] font-semibold ">
           {parsedExerciseList[indexOfList].name.toUpperCase()}
         </Text>
