@@ -105,45 +105,6 @@ const Active = () => {
 
   return (
     <View className="h-full bg-white">
-      {isOpen && (
-        <Modal isOpen={true}>
-          <Text>G</Text>
-          <View className="bg-white w-full p-4 rounded-xl">
-            <TouchableOpacity
-              onPress={() => {
-                console.log("here");
-                setIsOpen(false);
-              }}
-              className="absolute right-5 top-2  z-10 "
-            >
-              {/* <Text>X</Text> */}
-            </TouchableOpacity>
-            <View className="mb-4 gap-1">
-              <Text>Send bugs</Text>
-              <Text className="text-gray-500">
-                Share your feedback, type in the bug you encountered, and we
-                will fix it
-              </Text>
-            </View>
-            <View>
-              <TextInput
-                multiline={true}
-                underlineColorAndroid={"transparent"}
-                autoCorrect={true}
-                autoFocus={true}
-                autoCapitalize={"sentences"}
-                className="bg-gray-100 rounded-lg h-40 py-4 px-3 border border-gray-300 "
-                placeholder="I found a bug where..."
-                placeholderTextColor="gray"
-                style={{ textAlignVertical: "top" }}
-              />
-            </View>
-            {/* <Pressable className="bg-red-400 rounded-md py-3 items-center justify-center mt-3">
-              <Text className="text-white text-md">Send Bug</Text>
-            </Pressable> */}
-          </View>{" "}
-        </Modal>
-      )}
       <View className="w-full h-[40%]">
         <Image
           className="w-[80%] mx-auto  h-[90%]  "

@@ -15,7 +15,6 @@ const index = () => {
   const [visible, setVisible] = useState<boolean>();
   const [customList, setCustomList] = useState([]);
   const categories = Object.keys(AllExercises);
-  //   console.log("Ex: ", AllExercises);
 
   const renderToggleButton = (): React.ReactElement => (
     <Button onPress={() => setVisible(true)}>TOGGLE POPOVER</Button>
@@ -32,27 +31,16 @@ const index = () => {
     exercises.forEach((exercise) => {
       const { imgURL, name, duration } = AllExercises[category][exercise];
       dataArr.push({ imgURL, name, duration });
-      // Now you can use imgURL, n  ame, and duration for each exercise
-      //   console.log(
-      //     `Category: ${category}, Exercise: ${name}, Duration: ${duration}`
-      //   );
-
-      //   console.log("inside: ", AllExercises[category][exercise]);
 
       tempObj = {
         title: category,
         data: dataArr,
-        // data: [JSON.stringify([AllExercises[category][exercise]])],
       };
     });
     arr.push(tempObj);
   });
 
   console.log("customList: ", customList);
-
-  //   arr = JSON.stringify(arr);
-
-  //   console.log("test: ", JSON.stringify(arr));
 
   return (
     <View className="bg-white">

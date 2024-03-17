@@ -10,14 +10,29 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { ApplicationProvider } from "@ui-kitten/components";
 import * as eva from "@eva-design/eva";
+import Search from "./Search";
+import { useAuth } from "../../../context/authContext";
+import { AuthContextType } from "../../../Tstypes/types";
 
 const home = () => {
+  // const auth = false;
+  // useEffect(() => {
+  //   if (!auth) {
+  //     router.navigate("/Authentication/login");
+  //   }
+  // }, []);
+
+  const { currentUser, userInfo }: AuthContextType = useAuth();
+
+  // console.log("userInfo: ", userInfo);
+  // console.log("currentUser: ", currentUser);
   return (
-    <View className="bg-[#F8F3FF] h-full  ">
-      <Redirect href="/bookmark/custom" />
+    <View className=" h-full bg-[#121114]  ">
+      {/* <Redirect href="/booking/" /> */}
       <ScrollView className="">
         <SafeAreaView className="mx-0">
           <View className="flex-1  w-full z-20 ">
+            <Search />
             <ProfileHeader />
             <Routine />
             <Recommended />
@@ -25,14 +40,6 @@ const home = () => {
           </View>
         </SafeAreaView>
       </ScrollView>
-
-      {/* <Text className="bg-red-500 text-blue-300 border-2 ">home</Text>
-      <View className="bg-red-400 flex justify-center">
-      <Text>Hello</Text>
-      </View>
-      <StatusBar style="auto" />
-      
-    <Link href="/settings">Go to settings</Link> */}
     </View>
   );
 };

@@ -101,12 +101,7 @@ const Categories = () => {
       <Text className="left-2 text-[16px]  text-gray-800 mb-2 ml-1">
         Browse By Area
       </Text>
-      {/* <ScrollView
-        horizontal={true}
-        scrollEventThrottle={16}
-        showsHorizontalScrollIndicator={false}
-        className="p-0"
-      > */}
+
       <View className="">
         <View className="flex  w-full pb-10 ">
           <FlatList
@@ -117,12 +112,12 @@ const Categories = () => {
               <>
                 <View className="border border-gray-300 rounded-lg w-[120px] h-[110px] pt-5 items-center justify-center mx-2 my-1">
                   <SingleCategory
-                    imgURL={item.imgURL}
-                    exerciseRegion={item.exerciseRegion}
-                    color={item.color}
-                    width={item.width}
-                    height={item.height}
-                    rounded={item.rounded}
+                    imgurl={require("../../../assets/images/single.png")}
+                    displayname={"lowerBack"}
+                    description={"Stretch"}
+                    color="D0EFF9"
+                    width={155}
+                    height={230}
                   />
                 </View>
               </>
@@ -136,12 +131,12 @@ const Categories = () => {
               <>
                 <View className="border border-gray-300 rounded-lg w-[120px] h-[110px] pt-5 items-center justify-center mx-2 my-1">
                   <SingleCategory
-                    imgURL={item.imgURL}
-                    exerciseRegion={item.exerciseRegion}
-                    color={item.color}
-                    width={item.width}
-                    height={item.height}
-                    rounded={item.rounded}
+                    imgurl={require("../../../assets/images/single.png")}
+                    displayname={"lowerBack"}
+                    description={"Stretch"}
+                    color="D0EFF9"
+                    width={155}
+                    height={230}
                   />
                 </View>
               </>
@@ -149,7 +144,6 @@ const Categories = () => {
           />
         </View>
       </View>
-      {/* </ScrollView> */}
     </View>
   );
 };

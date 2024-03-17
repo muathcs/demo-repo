@@ -6,10 +6,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 
 const Footer = (): React.ReactElement => (
-  <View
-    // eslint-disable-next-line react/prop-types
-    className="border"
-  >
+  <View className="border">
     <Button size="small" status="basic">
       CANCEL
     </Button>

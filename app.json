@@ -15,12 +15,14 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "backgroundColor": "#F1EAFF"
+      "backgroundColor": "#F1EAFF",
+      "color": "white"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ffffff",
+        "color": "white"
       }
     },
     "web": {

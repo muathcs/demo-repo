@@ -67,9 +67,6 @@ const ExercisePage = () => {
     rounded,
   }: SingleCategoryProps = item;
 
-  // console.log("item: ", item);
-
-  // if the excercise does not exist leave function.
   if (!Data[exerciseRegion]) {
     return;
   }

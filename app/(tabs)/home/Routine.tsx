@@ -11,7 +11,6 @@ const Routine = () => {
         <Pressable className=" self-start bg-[#7F63FB] rounded-full mt-5  px-10 py-2 ">
           <Text className=" text-white">Continue</Text>
         </Pressable>
-        {/* <Button appearance="filled">Filled</Button> */}
       </View>
       <View className=" w-1/2   overflow-hidden">
         <Image

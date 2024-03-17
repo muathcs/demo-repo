@@ -8,7 +8,6 @@ const CustomLayout = () => {
       <Stack.Screen
         name="index"
         options={{
-          // headerShown: false,
           headerTitle: "Custom",
           presentation: "modal",
         }}

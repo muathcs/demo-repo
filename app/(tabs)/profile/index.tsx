@@ -42,7 +42,6 @@ export default function Profile() {
           <View style={styles.headerAction}>
             <TouchableOpacity
               onPress={() => {
-                // handle onPress
                 router.back();
               }}
             >
@@ -53,11 +52,7 @@ export default function Profile() {
           <Text style={styles.headerTitle}>Settings</Text>
 
           <View style={[styles.headerAction, { alignItems: "flex-end" }]}>
-            <TouchableOpacity
-              onPress={() => {
-                // handle onPress
-              }}
-            >
+            <TouchableOpacity onPress={() => {}}>
               <FeatherIcon color="#000" name="more-vertical" size={24} />
             </TouchableOpacity>
           </View>
@@ -68,12 +63,7 @@ export default function Profile() {
             <Text style={styles.sectionTitle}>Account</Text>
 
             <View style={styles.sectionBody}>
-              <TouchableOpacity
-                onPress={() => {
-                  // handle onPress
-                }}
-                style={styles.profile}
-              >
+              <TouchableOpacity onPress={() => {}} style={styles.profile}>
                 <Image
                   alt=""
                   source={{
@@ -134,12 +124,7 @@ export default function Profile() {
 
             <View style={styles.sectionBody}>
               <View style={[styles.rowWrapper, styles.rowFirst]}>
-                <TouchableOpacity
-                  onPress={() => {
-                    // handle onPress
-                  }}
-                  style={styles.row}
-                >
+                <TouchableOpacity onPress={() => {}} style={styles.row}>
                   <Text style={styles.rowLabel}>Language</Text>
 
                   <View style={styles.rowSpacer} />
@@ -151,12 +136,7 @@ export default function Profile() {
               </View>
 
               <View style={styles.rowWrapper}>
-                <TouchableOpacity
-                  onPress={() => {
-                    // handle onPress
-                  }}
-                  style={styles.row}
-                >
+                <TouchableOpacity onPress={() => {}} style={styles.row}>
                   <Text style={styles.rowLabel}>Location</Text>
 
                   <View style={styles.rowSpacer} />
@@ -210,12 +190,7 @@ export default function Profile() {
 
             <View style={styles.sectionBody}>
               <View style={[styles.rowWrapper, styles.rowFirst]}>
-                <TouchableOpacity
-                  onPress={() => {
-                    // handle onPress
-                  }}
-                  style={styles.row}
-                >
+                <TouchableOpacity onPress={() => {}} style={styles.row}>
                   <Text style={styles.rowLabel}>Contact Us</Text>
 
                   <View style={styles.rowSpacer} />
@@ -240,12 +215,7 @@ export default function Profile() {
               </View>
 
               <View style={styles.rowWrapper}>
-                <TouchableOpacity
-                  onPress={() => {
-                    // handle onPress
-                  }}
-                  style={styles.row}
-                >
+                <TouchableOpacity onPress={() => {}} style={styles.row}>
                   <Text style={styles.rowLabel}>Rate in App Store</Text>
 
                   <View style={styles.rowSpacer} />
@@ -255,12 +225,7 @@ export default function Profile() {
               </View>
 
               <View style={[styles.rowWrapper, styles.rowLast]}>
-                <TouchableOpacity
-                  onPress={() => {
-                    // handle onPress
-                  }}
-                  style={styles.row}
-                >
+                <TouchableOpacity onPress={() => {}} style={styles.row}>
                   <Text style={styles.rowLabel}>Terms and Privacy</Text>
 
                   <View style={styles.rowSpacer} />
@@ -281,12 +246,7 @@ export default function Profile() {
                   { alignItems: "center" },
                 ]}
               >
-                <TouchableOpacity
-                  onPress={() => {
-                    // handle onPress
-                  }}
-                  style={styles.row}
-                >
+                <TouchableOpacity onPress={() => {}} style={styles.row}>
                   <Text style={[styles.rowLabel, styles.rowLabelLogout]}>
                     Log Out
                   </Text>

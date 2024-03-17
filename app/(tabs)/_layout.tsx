@@ -5,6 +5,7 @@ import { Header } from "react-native/Libraries/NewAppScreen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { AntDesign } from "@expo/vector-icons";
 
 type iconNameType =
   | "home"
@@ -24,11 +25,7 @@ const TabsLayout = () => {
 
         tabBarStyle: {
           height: Platform.OS == "android" ? 60 : 70,
-          // borderRadius: 10,
-          borderTopEndRadius: 10,
-          borderTopLeftRadius: 10,
-          borderTopColor: "yellow",
-          backgroundColor: "white",
+          backgroundColor: "#121114",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -47,13 +44,8 @@ const TabsLayout = () => {
 
             return (
               <>
-                <Ionicons
-                  label
-                  name={iconName}
-                  size={size}
-                  color={"#7F63FB"}
-                  aria-label="xhaha"
-                />
+                <AntDesign name="search1" size={24} color="grey" />
+                <Text className="text-gray-400 text-sm">Browse</Text>
               </>
             );
           },
@@ -69,7 +61,8 @@ const TabsLayout = () => {
               : "bookmark-outline";
             return (
               <>
-                <Ionicons name={iconsName} size={size} color={"#7F63FB"} />
+                <AntDesign name="inbox" size={24} color="grey" />
+                <Text className="text-gray-400 text-sm">Inbox</Text>
               </>
             );
           },
@@ -86,7 +79,8 @@ const TabsLayout = () => {
               : "stats-chart-outline";
             return (
               <>
-                <Ionicons name={iconsName} size={size} color={"#7F63FB"} />
+                <AntDesign name="hearto" size={24} color="grey" />
+                <Text className="text-gray-400 text-sm">Following</Text>
               </>
             );
           },
@@ -102,7 +96,8 @@ const TabsLayout = () => {
               : "person-outline";
             return (
               <>
-                <Ionicons name={iconsName} size={size} color={"#7F63FB"} />
+                <Ionicons name="person-outline" size={24} color="grey" />
+                <Text className="text-gray-400 text-sm">Profile</Text>
               </>
             );
           },

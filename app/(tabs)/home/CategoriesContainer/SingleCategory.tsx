@@ -8,41 +8,40 @@ import {
 } from "react-native";
 import React from "react";
 import { router, useNavigation } from "expo-router";
+import { CelebType } from "../../../../Tstypes/types";
+import { formatter } from "../../../../utilities/formatter";
 
-type SingleCategoryProps = {
-  imgURL: ImageSourcePropType;
-  exerciseRegion: String;
-  exerciseName?: String;
-  exerciseDuration?: Number;
-  color: string;
-  width: number;
-  height: number;
-  rounded?: boolean;
-};
+type SingleCategoryProps = Partial<
+  CelebType & {
+    color: string;
+    width: number;
+    height: number;
+    rounded: boolean;
+  }
+>;
 
 const SingleCategory = ({
-  imgURL,
-  exerciseRegion,
-  exerciseName,
-  exerciseDuration,
+  account,
+  category,
+  displayname,
+  price,
+  description,
+  imgurl,
   color,
-  width,
   height,
+  width,
   rounded,
 }: SingleCategoryProps) => {
-  //Argument of type '[string, { item: string; }]' is not assignable to parameter of type 'never'.ts(2345)
-
   const navigation = useNavigation<any>();
 
   const item = {
-    imgURL,
-    exerciseRegion,
-    exerciseName,
-    exerciseDuration,
+    account,
+    category,
+    displayname,
+    price,
+    description,
+    imgurl,
     color,
-    width,
-    height,
-    rounded,
   };
   return (
     <View className=" ">
@@ -50,7 +49,7 @@ const SingleCategory = ({
         activeOpacity={0.5}
         onPress={() => {
           console.log("first");
-          router.navigate({ pathname: `/exercise`, params: item }); // Remove the braces in params
+          router.navigate({ pathname: `/celeb/profile`, params: item });
         }}
       >
         <View
@@ -62,16 +61,21 @@ const SingleCategory = ({
           }}
           className=" w-[135px] h-[125px] flex justify-center items-center  mx-1 my-2  bg-red-400  "
         >
-          <View className=" w-full items-center  ">
-            <Image className="flex-shrink-0 w-full h-full " source={imgURL} />
+          <View className=" w-full items-center rounded-lg">
+            <Image
+              className="flex-shrink-0 w-full h-full rounded-lg"
+              source={require("../../../../assets/images/man.jpg")}
+            />
           </View>
         </View>
       </TouchableOpacity>
-      <View className="  ml-2 items-center">
-        <Text className="text-gray-800">{exerciseRegion}</Text>
-        <Text className="text-gray-400">
-          {exerciseDuration && exerciseName + " |"}
-          {exerciseDuration && exerciseDuration.toString() + "minutes"}
+      <View className="  ml-2  items-start">
+        <Text className="text-white text-left font-bold text-lg">
+          {displayname}
+        </Text>
+        <Text className="text-gray-300">{displayname && description}</Text>
+        <Text className="text-white font-bold">
+          {price && formatter.format(price)}+
         </Text>
       </View>
     </View>
